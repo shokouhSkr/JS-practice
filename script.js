@@ -1,15 +1,16 @@
 "use strict";
 
-// Functions in object
+// the "this" keyword in functions
 const jonas = {
   firstName: "jonas",
   lastName: "askari",
   friends: ["ali", "hasan", "hossein"],
+  birthYear: 1991,
 
-  calcAge: (birthYear) => {
-    return 2030 - birthYear;
+  calcAge: function () {
+    console.log(this);
+    return 2037 - this.birthYear;
   },
 };
 
-console.log(jonas.calcAge(1993));
-console.log(jonas["calcAge"](1990));
+console.log(jonas.calcAge());
