@@ -1,27 +1,35 @@
 "use strict";
 
-// the "this" keyword in functions
-const jonas = {
-  firstName: "jonas",
-  lastName: "askari",
-  friends: ["ali", "hasan", "hossein"],
-  birthYear: 1973,
-  job: "programmer",
-  hasDriversLicense: false,
+const Mark = {
+  fullName: "Mark Miller",
+  mass: 78,
+  height: 1.69,
 
-  calcAge: function () {
-    console.log(this);
-    return 2037 - this.birthYear;
+  calcBMI: function () {
+    this.BMI = this.mass / this.height ** 2;
+    return this.BMI;
   },
 };
 
-// console.log(jonas.calcAge());
+const John = {
+  fullName: "John Smith",
+  mass: 92,
+  height: 1.95,
 
-// challange:
-// "jonas is a 46-year old teacher, and he has a driver's license"
+  calcBMI: function () {
+    this.BMI = this.mass / this.height ** 2;
+    return this.BMI;
+  },
+};
+
+// با اجرای این دو فانکشن پراپرتی بی ام آی به آبجکت ها اضافه میشه
+Mark.calcBMI();
+John.calcBMI();
 
 console.log(
-  `${jonas.firstName} is a ${jonas.calcAge()}-year old ${jonas.job}, and he has ${
-    jonas.hasDriversLicense ? "a" : "no"
-  } driver's license`
-);
+  `${Mark.BMI > John.BMI ? Mark.fullName : John.fullName}'s BMi (${
+    Mark.BMI > John.BMI ? Mark.BMI : John.BMI
+  }) is higher than ${Mark.BMI < John.BMI ? Mark.fullName : John.fullName}'s (${
+    Mark.BMI < John.BMI ? Mark.BMI : John.BMI
+  })`
+); // Mark Miller's BMi (27.309968138370508) is higher than John Smith's (24.194608809993426)
