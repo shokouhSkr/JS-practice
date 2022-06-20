@@ -5,7 +5,9 @@ const jonas = {
   firstName: "jonas",
   lastName: "askari",
   friends: ["ali", "hasan", "hossein"],
-  birthYear: 1991,
+  birthYear: 1973,
+  job: "programmer",
+  hasDriversLicense: false,
 
   calcAge: function () {
     console.log(this);
@@ -13,4 +15,13 @@ const jonas = {
   },
 };
 
-console.log(jonas.calcAge());
+// console.log(jonas.calcAge());
+
+// challange:
+// "jonas is a 46-year old teacher, and he has a driver's license"
+
+console.log(
+  `${jonas.firstName} is a ${jonas.calcAge()}-year old ${jonas.job}, and he has ${
+    jonas.hasDriversLicense ? "a" : "no"
+  } driver's license`
+);
