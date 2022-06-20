@@ -1,12 +1,15 @@
 "use strict";
 
-// Dot vs bracket notaition
+// Functions in object
 const jonas = {
   firstName: "jonas",
   lastName: "askari",
   friends: ["ali", "hasan", "hossein"],
+
+  calcAge: (birthYear) => {
+    return 2030 - birthYear;
+  },
 };
 
-const information = `${jonas.firstName} has ${jonas.friends.length} friends, and his best friend is ${jonas.friends[0]}`;
-
-console.log(information);
+console.log(jonas.calcAge(1993));
+console.log(jonas["calcAge"](1990));
