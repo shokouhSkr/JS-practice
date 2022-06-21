@@ -1,35 +1,33 @@
 "use strict";
 
-const Mark = {
-  fullName: "Mark Miller",
-  mass: 78,
-  height: 1.69,
+// Looping Arrays, continue and break
+const jonas = ["jonas", "askari", 2037 - 1990, "teacher", true];
 
-  calcBMI: function () {
-    this.BMI = this.mass / this.height ** 2;
-    return this.BMI;
-  },
-};
+console.log("---only strings---");
 
-const John = {
-  fullName: "John Smith",
-  mass: 92,
-  height: 1.95,
+for (let i = 0; i < jonas.length; i++) {
+  if (typeof jonas[i] !== "string") continue;
+  console.log(jonas[i], typeof jonas[i]);
+}
 
-  calcBMI: function () {
-    this.BMI = this.mass / this.height ** 2;
-    return this.BMI;
-  },
-};
+// Looping backwards
+for (let i = jonas.length - 1; i >= 0; i--) {
+  console.log(i, jonas[i]);
+}
 
-// با اجرای این دو فانکشن پراپرتی بی ام آی به آبجکت ها اضافه میشه
-Mark.calcBMI();
-John.calcBMI();
+// Loops in loop
+for (let i = 1; i < 4; i++) {
+  console.log(`---------Starting exercise ${i}---------`);
 
-console.log(
-  `${Mark.BMI > John.BMI ? Mark.fullName : John.fullName}'s BMi (${
-    Mark.BMI > John.BMI ? Mark.BMI : John.BMI
-  }) is higher than ${Mark.BMI < John.BMI ? Mark.fullName : John.fullName}'s (${
-    Mark.BMI < John.BMI ? Mark.BMI : John.BMI
-  })`
-); // Mark Miller's BMi (27.309968138370508) is higher than John Smith's (24.194608809993426)
+  for (let j = 1; j < 6; j++) {
+    console.log(`Lifting weight repetition ${j} of exercise ${i}`);
+  }
+}
+
+// White loop
+let dice = Math.floor(Math.random() * 6) + 1;
+
+while (dice !== 6) {
+  console.log(`You rolled ${dice}`);
+  dice = Math.floor(Math.random() * 6) + 1;
+}
