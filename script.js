@@ -1,22 +1,32 @@
 "use strict";
 
-const arr = [17, 21, 23];
+// scoping in practice
 
-const newArr = [];
-const printForecast = function (arr) {
-  for (let i = 0; i < arr.length; i++) {
-    newArr.push(`${arr[i]}°C in ${i + 1} days`);
+function calcAge(birthYear) {
+  const age = 2037 - birthYear;
+
+  function printAge() {
+    let output = `${firstName}, you are ${age}, born in ${birthYear}`;
+    console.log(output);
+
+    if (birthYear >= 1981 && birthYear <= 1996) {
+      output = "NEW OUTPUT";
+      var millenial = true;
+      const str = `Oh, and you're a millenial, ${firstName}`;
+      console.log(str);
+      console.log(millenial);
+    }
+
+    console.log(output);
+    console.log(str);
   }
 
-  return newArr;
-};
+  printAge();
 
-const result = printForecast(arr);
+  return age;
+}
 
-// console.log(printForecast(arr)); [
-//   "...12°C in 1 days",
-//   "...5°C in 2 days",
-//   "...-5°C in 3 days",
-// ];
-
-console.log(`... ${result.join(" ... ")} ...`);
+const firstName = "John"; // global scope
+calcAge(1991);
+console.log(age); // ReferenceError
+printAge(); // dosn't know it
