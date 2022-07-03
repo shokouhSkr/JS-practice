@@ -1,37 +1,42 @@
 "use strict";
 
-// "this" keyword in practice
+// primitives vs objects
 
-// 1.
-console.log(this); // window
+// primitive:
+let age = 30;
+let oldAge = age;
+age = 31;
 
-// 2. regular function
-const calcAge = function (birthYear) {
-  console.log(2037 - birthYear);
-  console.log(this); // undefined
-};
-calcAge(1990);
+console.log(age); // 31
+console.log(oldAge); // 30
 
-// 3. arrow function
-const calcAgeArrow = (birthYear) => {
-  console.log(2037 - birthYear);
-  console.log(this); // window
-};
-calcAgeArrow();
-
-// 4.
-const jonas = {
-  year: 1991,
-  calcAge: function () {
-    console.log(this); // {year: 1991, calcAge: ƒ}
-    console.log(2037 - this.year); // 46
-  },
-};
-jonas.calcAge(1980);
-
-const matilda = {
-  year: 2017,
+/**********************************************/
+// object:
+const me = {
+  name: "jonas",
+  age: 30,
 };
 
-matilda.calcAge = jonas.calcAge;
-matilda.calcAge(); // 20
+const friend = me;
+console.log(friend); // {name: 'jonas', age: 30}
+
+friend.age = 27;
+console.log(`friend: ${friend.age}, me: ${me.age}`); // friend: 27, me: 27
+
+/**********************************************/
+// coping object:
+
+const jessica = {
+  firstName: "Jessica",
+  lastName: "Williams",
+  age: 27,
+  family: ["Bob", "John"],
+};
+
+const copyJessica = Object.assign({}, jessica);
+console.log(jessica, copyJessica);
+
+copyJessica.family.push("Alex");
+copyJessica.age = 13;
+
+console.log(jessica, copyJessica);
