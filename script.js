@@ -1,7 +1,16 @@
 "use strict";
 
-// destructing object
+// the spread operator(...)
 
+const arr = [7, 8, 9];
+const badNewArr = [1, 2];
+
+// better way
+const newArr = [1, 2, ...arr];
+console.log(newArr); // [1, 2, 7, 8, 9]
+console.log(...newArr); // 1 2 7 8 9
+
+/*******************************************************/
 // Example:
 const restaurant = {
   name: "Classico Italiano",
@@ -41,61 +50,17 @@ const restaurant = {
   },
 };
 
-const { name, openingHours, categories } = restaurant;
+// adding new food to mainMenu:
+const newMenu = [...restaurant.mainMenu, "Gnocci"];
+console.log(newMenu); //  ['Pizza', 'Pasta', 'Risotto', 'Gnocci']
 
-console.log(name, openingHours, categories);
-// Classico Italiano {thu: {…}, fri: {…}, sat: {…}}fri: {open: 11, close: 23}sat: {open: 0, close: 24}thu: {open:12, close: 22}[[Prototype]]: Object (4) ['Italian', 'Pizzeria', 'Vegetarian', 'Organic']
+// const newObj = { ...restaurant.openingHours.fri, middle: 18 };
+// console.log(newObj);
 
-const { name: restaurantName, categories: tags } = restaurant;
-console.log(restaurantName, tags); // Classico Italiano (4) ['Italian', 'Pizzeria', 'Vegetarian', 'Organic']
+// copy array:
+const copyMainMenu = [...restaurant.mainMenu];
+console.log(copyMainMenu); // ['Pizza', 'Pasta', 'Risotto']
 
-console.log(restaurant);
-// {name: 'Classico Italiano', location: 'Via Angelo Tavanti 23, Firenze, Italy', categories: Array(4), starterMenu: Array(4), mainMenu: Array(3), …}
-
-/**********************************************************************/
-// default values:
-
-const { menu = [], starterMenu: starters = [] } = restaurant;
-console.log(menu, starters);
-// [] (4) ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad']
-
-/**********************************************************************/
-// mutating variables:
-
-let a = 111;
-let b = 999;
-const obj = { a: 23, b: 7, c: 14 };
-({ a, b } = obj);
-
-console.log(a, b); // 23 7
-
-/**********************************************************************/
-// nested objects:
-
-const { fri } = openingHours;
-console.log(fri); // {open: 11, close: 23}
-
-const {
-  fri: { open, close },
-} = openingHours;
-console.log(open, close); // 11 23
-
-const {
-  fri: { close: c, open: o },
-} = openingHours;
-console.log(c, o); // 23 11
-
-/**********************************************************************/
-restaurant.orderDelivery({
-  time: "23:30",
-  address: "Via del Sole, 21",
-  mainIndex: 2,
-  starterIndex: 2,
-});
-// Order received! Garlic Bread and Risotto will be delivered to Via del Sole, 21 at 23:30
-
-restaurant.orderDelivery({
-  mainIndex: 2,
-  starterIndex: 2,
-});
-// Order received! Garlic Bread and Risotto will be delivered to undefined at 20:00
+// join 2(or more) arrays:
+const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+console.log(menu); // ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad', 'Pizza', 'Pasta', 'Risotto']
