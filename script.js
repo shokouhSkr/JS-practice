@@ -1,17 +1,15 @@
 "use strict";
 
-// the spread operator(...)
+// rest pattern and parameters
 
-const arr = [7, 8, 9];
-const badNewArr = [1, 2];
+// SPREAD, because on RIGHT side of =
+const arr = [1, 2, ...[3, 4]];
 
-// better way
-const newArr = [1, 2, ...arr];
-console.log(newArr); // [1, 2, 7, 8, 9]
-console.log(...newArr); // 1 2 7 8 9
+// REST, because on LEFT side of =
+const [a, b, ...others] = [1, 2, 3, 4, 5];
+console.log(a, b, others);
 
-/*******************************************************/
-// Example:
+/************************************************/
 const restaurant = {
   name: "Classico Italiano",
   location: "Via Angelo Tavanti 23, Firenze, Italy",
@@ -19,21 +17,24 @@ const restaurant = {
   starterMenu: ["Focaccia", "Bruschetta", "Garlic Bread", "Caprese Salad"],
   mainMenu: ["Pizza", "Pasta", "Risotto"],
 
-  order: function (starterIndex, mainIndex) {
+  order(starterIndex, mainIndex) {
     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
   },
 
-  // orderDelivery: function (obj) {
-  //   console.log(obj);
-  // },
-
-  // default values for times when there is nothing in that position
-  orderDelivery: function ({ starterIndex = 1, mainIndex = 0, time = "20:00", address }) {
+  orderDelivery({ starterIndex = 1, mainIndex = 0, time = "20:00", address }) {
     console.log(
       `Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
     );
   },
 
+  orderPasta(ing1, ing2, ing3) {
+    console.log(`Here is your declicious pasta with ${ing1}, ${ing2} and ${ing3}`);
+  },
+
+  orderPizza(mainIngredient, ...otherIngredients) {
+    console.log(mainIngredient);
+    console.log(otherIngredients);
+  },
   openingHours: {
     thu: {
       open: 12,
@@ -50,17 +51,9 @@ const restaurant = {
   },
 };
 
-// adding new food to mainMenu:
-const newMenu = [...restaurant.mainMenu, "Gnocci"];
-console.log(newMenu); //  ['Pizza', 'Pasta', 'Risotto', 'Gnocci']
+const [pizza, , risotto, ...otherFood] = [...restaurant.mainMenu, ...restaurant.starterMenu];
+console.log(pizza, risotto, otherFood); // Pizza Risotto (4) ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad']
 
-// const newObj = { ...restaurant.openingHours.fri, middle: 18 };
-// console.log(newObj);
-
-// copy array:
-const copyMainMenu = [...restaurant.mainMenu];
-console.log(copyMainMenu); // ['Pizza', 'Pasta', 'Risotto']
-
-// join 2(or more) arrays:
-const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
-console.log(menu); // ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad', 'Pizza', 'Pasta', 'Risotto']
+const { sat, ...weekdays } = restaurant.openingHours;
+console.log(sat, weekdays);
+// {open: 0, close: 24} {thu: {…}, fri: {…}}
