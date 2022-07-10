@@ -1,13 +1,19 @@
 "use strict";
 
-// rest pattern and parameters
+// short circuiting (&& and ||)
 
-// SPREAD, because on RIGHT side of =
-const arr = [1, 2, ...[3, 4]];
+console.log("---- OR ----");
+// Use ANY data type, return ANY data type, short-circuiting
+console.log(3 || "Jonas");
+console.log("" || "Jonas");
+console.log(true || 0);
+console.log(undefined || null);
+console.log(undefined || 0 || "" || "Hello" || 23 || null);
 
-// REST, because on LEFT side of =
-const [a, b, ...others] = [1, 2, 3, 4, 5];
-console.log(a, b, others);
+console.log("---- AND ----");
+console.log(0 && "Jonas");
+console.log(7 && "Jonas");
+console.log("Hello" && 23 && null && "jonas");
 
 /************************************************/
 const restaurant = {
@@ -51,9 +57,19 @@ const restaurant = {
   },
 };
 
-const [pizza, , risotto, ...otherFood] = [...restaurant.mainMenu, ...restaurant.starterMenu];
-console.log(pizza, risotto, otherFood); // Pizza Risotto (4) ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad']
+restaurant.numGuests = 0;
+const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
+console.log(guests1);
 
-const { sat, ...weekdays } = restaurant.openingHours;
-console.log(sat, weekdays);
-// {open: 0, close: 24} {thu: {…}, fri: {…}}
+// OR:
+const guests2 = restaurant.numGuests || 10;
+console.log(guests2);
+
+//////////////////////////////////////////////////////////////////
+
+if (restaurant.orderPizza) {
+  restaurant.orderPizza("mushrooms", "spinach");
+}
+
+// OR
+restaurant.orderPizza && restaurant.orderPizza("mushrooms", "spinach");
