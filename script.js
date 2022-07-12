@@ -77,8 +77,6 @@ console.log(allPlayers);
 const players1Final = [...players1, "Thiago", "Coutinho", "Perisic"];
 console.log(players1Final);
 
-// 7. The team with the lower odd is more likely to win. Print to the console which team is more likely to win, WITHOUT using an if/else statement or the ternary operator.
-
 // 5.
 // const { team1, x: draw, team2 } = game.odds;
 const {
