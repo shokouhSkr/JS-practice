@@ -1,31 +1,36 @@
 "use strict";
 
-// Set
+// Map - fundamental
 
-// const ordersSet = new Set(["Pasta", "Pizza", "Pizza", "Risotto", "Pasta", "Pizza"]);
-// console.log(ordersSet);
+const rest = new Map();
+rest.set("name", "Classico Italiano");
+rest.set(1, "Firenze, Italy");
+rest.set(2, "Lisbon, Portugal");
+console.log(rest);
 
-// console.log(new Set("Jonas"));
+rest
+  .set("categories", ["Italian", "Pizzeria", "Vegetarian", "Organic"])
+  .set("open", 11)
+  .set("close", 23)
+  .set(true, "We are open :D")
+  .set(false, "We are closed :(");
 
-// const person = new Set({ name: "ali", age: 15 });
-// console.log(person);
+// console.log(rest.get("name"));
+// console.log(rest.get("open"));
+// console.log(rest.get(true));
+// console.log(rest.get(1));
 
-// console.log(ordersSet.size);
-// console.log(ordersSet.has("Pizza"));
-// console.log(ordersSet.has("Bread"));
-// ordersSet.add("Garlic Bread");
-// ordersSet.add("Garlic Bread");
-// ordersSet.delete("Risotto");
-// // ordersSet.clear();
-// console.log(ordersSet);
+// const time = 8;
+// console.log(rest.get(time > rest.get("open") && time < rest.get("close")));
 
-// for (const order of ordersSet) console.log(order);
+// console.log(rest.has("categories"));
+// rest.delete(2);
+// // rest.clear();
 
-// Example
-const staff = ["Waiter", "Chef", "Waiter", "Manager", "Chef", "Waiter"];
-const staffUnique = [...new Set(staff)];
-console.log(staffUnique);
+const arr = [1, 2];
+rest.set(arr, "Test");
+rest.set(document.querySelector("h1"), "Heading");
+console.log(rest);
+console.log(rest.size);
 
-console.log(new Set(staff).size);
-
-console.log(new Set("jonasschmedtmann").size);
+console.log(rest.get(arr));
