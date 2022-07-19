@@ -1,30 +1,19 @@
 "use strict";
 
-// Functions Accepting Callback Functions
-const oneWord = function (str) {
-  return str.replace(/ /g, "").toLowerCase(); // means replaceAll(' ', '')
-};
-console.log(oneWord("sh okou h"));
-
-const upperFirstWord = function (str) {
-  const [first, ...others] = str.split(" ");
-  return [first.toUpperCase(), ...others].join(" ");
+// Functions Returning Functions
+const greet = function (greeting) {
+  return function (name) {
+    console.log(`${greeting} ${name}`);
+  };
 };
 
-// Higher-order function
-const transformer = function (str, fn) {
-  console.log(`Original string: ${str}`);
-  console.log(`Transformed string: ${fn(str)}`);
+const greeterHey = greet("Hey");
+greeterHey("Jonas");
+greeterHey("Steven");
 
-  console.log(`Transformed by: ${fn.name}`);
-};
+greet("Hello")("Jonas");
 
-transformer("JavaScript is the best!", upperFirstWord);
-transformer("JavaScript is the best!", oneWord);
+// Challenge
+const greetArr = (greeting) => (name) => console.log(`${greeting} ${name}`);
 
-// JS uses callbacks all the time
-const high5 = function () {
-  console.log("👋");
-};
-document.body.addEventListener("click", high5);
-["Jonas", "Martha", "Adam"].forEach(high5);
+greetArr("Hi")("Jonas");
